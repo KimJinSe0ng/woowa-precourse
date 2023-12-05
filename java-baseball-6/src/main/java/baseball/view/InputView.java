@@ -4,6 +4,7 @@ import baseball.view.message.InputMessages;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class InputView {
     public static void inputNumbers() {
@@ -14,7 +15,15 @@ public class InputView {
          */
         List<Integer> numbers = new ArrayList<>();
         String input = Console.readLine();
+        validateForString(input);
         validateForRange(input);
+    }
+
+    private static void validateForString(String input) {
+        String regExp = "^[\\D]*$";
+        if (Pattern.matches(regExp, input)) {
+            throw new IllegalArgumentException("[ERROR] 문자는 입력할 수 없습니다.");
+        }
     }
 
     private static void validateForRange(String input) {
