@@ -3,7 +3,9 @@ package baseball.view;
 import baseball.view.message.InputMessages;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class InputView {
@@ -17,13 +19,16 @@ public class InputView {
         String input = Console.readLine();
         validateForString(input);
         validateForRange(input);
-        validateForUniqueDigits(input);
+        validateForDuplication(input);
     }
 
-    private static void validateForUniqueDigits(String input) {
-        String regExp = "^(\\d*(\\d).*(\\d)).*$";
-        if (Pattern.matches(regExp, input)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 서로 달라야 합니다.");
+    private static void validateForDuplication(String input) {
+        Set<Character> digits = new HashSet<>();
+
+        for (char number : input.toCharArray()) {
+            if (!digits.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 서로 달라야 합니다.");
+            }
         }
     }
     private static void validateForString(String input) {
