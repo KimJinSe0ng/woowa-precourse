@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-
     public static void inputNumbers() {
         System.out.print(InputMessages.INPUT_NUMBERS);
         /**
@@ -15,6 +14,12 @@ public class InputView {
          */
         List<Integer> numbers = new ArrayList<>();
         String input = Console.readLine();
+        validateForRange(input);
+    }
 
+    private static void validateForRange(String input) {
+        if (input.length() < 1 || input.length() > 3) {
+            throw new IllegalArgumentException("[ERROR] 3개의 값만 입력받을 수 있습니다.");
+        }
     }
 }
