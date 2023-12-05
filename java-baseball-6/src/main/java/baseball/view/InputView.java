@@ -17,8 +17,15 @@ public class InputView {
         String input = Console.readLine();
         validateForString(input);
         validateForRange(input);
+        validateForUniqueDigits(input);
     }
 
+    private static void validateForUniqueDigits(String input) {
+        String regExp = "^(\\d*(\\d).*(\\d)).*$";
+        if (Pattern.matches(regExp, input)) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 서로 달라야 합니다.");
+        }
+    }
     private static void validateForString(String input) {
         String regExp = "^[\\D]*$";
         if (Pattern.matches(regExp, input)) {
