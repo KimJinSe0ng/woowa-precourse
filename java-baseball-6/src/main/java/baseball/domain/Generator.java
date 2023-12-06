@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Generator {
-    public static Computer createRandomNumbers() {
+
+    public static List<Integer> createRandomNumbers() {
         List<Integer> randomNumbers = new ArrayList<>();
         while (randomNumbers.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
@@ -13,6 +14,6 @@ public class Generator {
                 randomNumbers.add(randomNumber);
             }
         }
-        return new Computer(randomNumbers);
+        return randomNumbers;
     }
 }
