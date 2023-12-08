@@ -2,11 +2,6 @@ package baseball.view;
 
 import baseball.view.message.InputMessages;
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 public class InputView {
     public static String inputNumbers() {
@@ -18,6 +13,4 @@ public class InputView {
         String input = Console.readLine();
         return input;
     }
-
-
 }
