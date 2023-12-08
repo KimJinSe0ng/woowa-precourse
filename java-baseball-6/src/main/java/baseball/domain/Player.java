@@ -2,7 +2,6 @@ package baseball.domain;
 
 import baseball.utils.Generator;
 import baseball.utils.Validator;
-import baseball.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class Player {
             Validator.isValidateInput(input);
             return new Player(convertToList(input));
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 유효하지 않습니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -32,6 +31,25 @@ public class Player {
             numbers.add(Integer.valueOf(number));
         }
         return numbers;
+    }
+
+    public List<Integer> compare(Player other) {
+        List<Integer> results = new ArrayList<>();
+        int correctCount = 0;
+        int strike = 0;
+        for (int i = 0; i < other.numbers.size(); i++) {
+            int computerNumber = this.numbers.get(i);
+            int userNumber = other.numbers.get(i);
+            if (this.numbers.contains(userNumber)) {
+                correctCount++;
+            }
+            if (computerNumber == userNumber) {
+                strike++;
+            }
+        }
+        results.add(correctCount);
+        results.add(strike);
+        return results;
     }
 
     public List<Integer> getNumbers() {

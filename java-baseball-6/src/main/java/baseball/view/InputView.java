@@ -1,16 +1,29 @@
 package baseball.view;
 
+import baseball.utils.Validator;
 import baseball.view.message.InputMessages;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public static String inputNumbers() {
         System.out.print(InputMessages.INPUT_NUMBERS);
-        /**
-         * 고민: 비즈니스 로직과 UI 로직은 분리해야하는데, 여기서 사용자 입력받은 값을 다시 되돌려줘야 한다. 예를 들어, 매개변수로 사용자 정답 객체를 넘겨 받는 것은 번거롭다.
-         * 어떻게 해야하나? inputNumbers()에서 List를 생성하고, return 하면 되지 않을까? 여기서는 입력받은 값을 넘겨주기만 하면 될 것 같다.
-         */
         String input = Console.readLine();
         return input;
+    }
+
+    public static boolean isPlaying() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = Console.readLine();
+        try {
+            Validator.isNumberInRange(input);
+            Validator.isString(input);
+            if (input.equals("1")) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 }
